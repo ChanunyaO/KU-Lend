@@ -1,0 +1,22 @@
+language: python
+
+# you can use Python 3.7 instead
+python: "3.8"
+
+# don't clone more than necessary
+git:
+  depth: 1
+
+install:
+  - python -m pip install --upgrade pip
+  - pip install -r requirements.txt
+
+before_scirpt:
+  - python manage.py migrate
+
+# script to run tests. Script can have many commands, one per line.
+script: 
+  - coverage run --source='.' manage.py test KU-Lend
+
+after_script:
+  - bash <(curl -s https://codecov.io/bash)

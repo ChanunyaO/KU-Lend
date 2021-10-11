@@ -1,0 +1,5 @@
+coverage
+Django~=3.2.7
+django-environ
+python-decouple
+environ~=1.0
