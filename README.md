@@ -4,4 +4,4 @@
 - [Vision Statements](https://github.com/ChanunyaO/KU-Lend/wiki/Vision-Statement)
 - [Requirements](https://github.com/ChanunyaO/KU-Lend/wiki/Requirements)
 ### Iteration Plan
-- [Iteration 1 Plan]
+- [Iteration 1 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-1-Plan)       
