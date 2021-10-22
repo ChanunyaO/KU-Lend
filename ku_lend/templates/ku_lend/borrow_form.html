@@ -1,0 +1,9 @@
+<h1>{{ item.item_name }}</h1>
+<ul>
+<form action="{% url 'ku_lend:confirm' item.id %}" method="post">
+    {% csrf_token %}
+    Borrow date : <input type="date" name='borrowdate'><br>
+    Return date : <input type="date" name='returndate'><br>
+    <button type="submit">Confirm</button>
+</form>
+</ul>

@@ -6,7 +6,7 @@ from . import views
 app_name = 'ku_lend'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('<int:item_id>/', views.detail, name='detail'),
+    path('<int:item_id>/', views.borrow_form, name='borrow_form'),
     path('<int:item_id>/results/', views.results, name='results'),
-    path('<int:item_id>/vote/', views.vote, name='vote'),
+    path('<int:item_id>/confirm/', views.confirm, name='confirm'),
 ]
