@@ -1,9 +1,9 @@
-{% if latest_question_list %}
+{% if latest_item_list %}
     <ul>
-    {% for question in latest_question_list %}
-    <li><a href="{% url 'ku_lend:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% for item in latest_item_list %}
+    <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No item are available.</p>
 {% endif %}
