@@ -9,6 +9,7 @@ class Item(models.Model):
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     amount_items = models.IntegerField()
+    item_image = models.ImageField()
 
     def __str__(self):
         return f'{self.item_name} is {self.status} at {self.pickup_place}.'
