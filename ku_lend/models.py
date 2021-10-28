@@ -22,7 +22,7 @@ class History(models.Model):
     return_date = models.DateTimeField()
     borrower = models.CharField(max_length=50)
     borrower_email = models.EmailField()
-    borrower_fee = models.IntegerField()
+    borrower_fee = models.IntegerField(null=True)
     borrower_paid_status = models.CharField(max_length=50)
 
     def __str__(self):
