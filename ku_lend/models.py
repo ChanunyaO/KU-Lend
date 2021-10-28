@@ -10,7 +10,7 @@ class Item(models.Model):
     status = models.CharField(max_length=10)
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    amount_items = models.PositiveSmallIntegerField()
+    amount_items = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return f'{self.item_name} is {self.status} at {self.pickup_place}.'
