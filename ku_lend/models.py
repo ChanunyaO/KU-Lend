@@ -13,7 +13,7 @@ class Item(models.Model):
     amount_items = models.IntegerField()
 
     def __str__(self):
-        return f'{self.item_name} is {self.status} at {self.pickup_place}.'
+        return self.item_name
 
 
 class History(models.Model):
@@ -24,6 +24,7 @@ class History(models.Model):
     borrower_email = models.EmailField()
     borrower_fee = models.IntegerField()
     borrower_paid_status = models.CharField(max_length=50)
+    #Add note
 
     def __str__(self):
         return f'{self.item} is borrowed by {self.borrower} from {self.borrow_date} to {self.return_date}'
