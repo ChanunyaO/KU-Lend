@@ -1,9 +1,7 @@
-import datetime
 from django.db import models
-from django.utils import timezone
-
 
 class Item(models.Model):
+    """Item's information for admin to fill in."""
     item_name = models.CharField(max_length=200)
     pickup_place = models.CharField(max_length=300)
     owner = models.CharField(max_length=50)
@@ -11,12 +9,14 @@ class Item(models.Model):
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     amount_items = models.PositiveSmallIntegerField(default=1)
+    item_image = models.ImageField()
 
     def __str__(self):
         return f'{self.item_name} is {self.status} at {self.pickup_place}.'
 
 
 class History(models.Model):
+    """Information about borrowing and returning item from borrower."""
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     borrow_date = models.DateTimeField()
     return_date = models.DateTimeField()
