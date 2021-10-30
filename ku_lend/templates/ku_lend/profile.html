@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+    {% for i in profile%}
+        {% if user.email == i.email%}
+            <h2>{{i.email}}</h2>
+        {%endif%}
+        {% if user.first_name == i.first_name%}
+            <h2>{{i.first_name}}  {{i.last_name}}</h2>
+
+        {% endif %}
+    {% endfor%}
+    {% endif%}
+
+
+</body>
+</html>
