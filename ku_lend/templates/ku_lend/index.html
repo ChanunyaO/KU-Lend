@@ -10,7 +10,9 @@
 {% if latest_item_list %}
     <ul>
     {% for item in latest_item_list %}
-    <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a></li>
+    {% if item.amount_items != 0 %}
+        <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a> {{ item.amount_items }}</item></li>
+    {% endif %}
     {% endfor %}
     </ul>
 {% else %}
