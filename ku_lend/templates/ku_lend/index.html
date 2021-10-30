@@ -75,7 +75,8 @@
 <!--<h2>Login Page</h2>-->
     <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
 {% endif %}
-
+<br>
+<br>
 {% if latest_item_list %}
     <ul>
     {% for item in latest_item_list %}
@@ -83,22 +84,25 @@
     {% endfor %}
     </ul>
 {% else %}
-    <p>No item are available.</p>
+<!--    <p>No item are available.</p>-->
 {% endif %}
 
 <h3>ITEM</h3>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">NAME</th>
+      <p><th scope="col">NAME</th></p>
       <th scope="col">CAN LEND</th>
-
+      <th scope="col">PICKUP PLACE</th>
+      <th scope="col">DETAIL</th>
     </tr>
   </thead>
     {% for item in items %}
     <tr>
       <th scope="row">{{item.item_name}}</th>
       <td>{{item.status}}</td>
+      <td>{{item.pickup_place}}</td>
+      <td>{{item.note}}</td>
     </tr>
     {% endfor %}
   </tbody>
