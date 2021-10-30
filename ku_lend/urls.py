@@ -2,6 +2,8 @@ from django.urls import path
 from django.urls.conf import path
 from .function import history
 from . import views
+from .function import profile
+
 
 
 app_name = 'ku_lend'
@@ -11,4 +13,6 @@ urlpatterns = [
     path('<int:item_id>/results/', views.results, name='results'),
     path('<int:item_id>/confirm/', views.confirm, name='confirm'),
     path('profile/', history.user_history)
+    #path('profile/', profile.profile)
+
 ]

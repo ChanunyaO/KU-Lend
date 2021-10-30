@@ -1,6 +1,6 @@
 {% load socialaccount %}
 {% if user.is_authenticated %}
-<h1>Welcome, {{ user.username }} !</h1>
+<h1>Welcome, {{ user.email }} !</h1>
 <a href="http://127.0.0.1:8000/accounts/logout">Logout</a>
 {% else %}
 <h1>Login Page</h1>
@@ -10,7 +10,9 @@
 {% if latest_item_list %}
     <ul>
     {% for item in latest_item_list %}
-    <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a></li>
+    {% if item.amount_items != 0 %}
+        <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a> {{ item.amount_items }}</item></li>
+    {% endif %}
     {% endfor %}
     </ul>
 {% else %}
