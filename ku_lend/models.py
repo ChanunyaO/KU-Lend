@@ -8,7 +8,7 @@ class Item(models.Model):
     status = models.CharField(max_length=10)
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-    amount_items = models.IntegerField()
+    amount_items = models.PositiveSmallIntegerField(default=1)
     item_image = models.ImageField()
 
     def __str__(self):
@@ -22,7 +22,7 @@ class History(models.Model):
     return_date = models.DateTimeField()
     borrower = models.CharField(max_length=50)
     borrower_email = models.EmailField()
-    borrower_fee = models.IntegerField()
+    borrower_fee = models.IntegerField(null=True)
     borrower_paid_status = models.CharField(max_length=50)
 
     def __str__(self):
