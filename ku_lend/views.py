@@ -7,9 +7,11 @@ from django.urls import reverse
 
 
 def index(request):
+    """Query Data from model"""
+    all_item = Item.objects.all()
     latest_item_list = Item.objects.order_by('-item_name')[:5]
     context = {'latest_item_list': latest_item_list}
-    return render(request, 'ku_lend/index.html', context)
+    return render(request, 'ku_lend/index.html', {'items':all_item})
 
 
 def borrow_form(request, item_id):
