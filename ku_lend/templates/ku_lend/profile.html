@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
     {% for i in profile%}
         {% if user.email == i.email%}
             <h2>{{i.email}}</h2>
@@ -16,7 +32,28 @@
         {% endif %}
     {% endfor%}
     {% endif%}
-
-
+<h2>History</h2>
+{% if user.is_authenticated %}
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Borrowed Date</th>
+    <th>Return Date</th>
+    <th>Fee</th>
+    <th>Status</th>
+    <th>Note</th>
+  </tr>
+  {% for user in history %}
+  <tr>
+    <td>{{user.item.item_name}}</td>
+    <td>{{user.borrow_date}}</td>
+    <td>{{user.return_date}}</td>
+    <td>{{user.borrower_fee}}</td>
+    <td>{{user.borrower_paid_status}}</td>
+    <td>{{user.item.note}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif%}
 </body>
 </html>
