@@ -27,5 +27,4 @@ def confirm(request, item_id):
     history.borrow_date = request.POST['borrow_date']
     history.return_date = request.POST['return_date']
     history.save()
-    print(history)
     return response.HttpResponseRedirect(reverse('ku_lend:index'))
