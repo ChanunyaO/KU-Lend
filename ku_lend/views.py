@@ -24,9 +24,6 @@ def results(request, item_id):
 
 def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-
-    return HttpResponse(f"You has borrow {item.item_name}. Please, go to {item.pickup_place}.")
-
     item.amount_items-=1
     item.save()
     history = History(item=item)
