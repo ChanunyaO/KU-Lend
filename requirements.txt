@@ -5,6 +5,7 @@ python-decouple
 environ~=1.0
 django-allauth
 Pillow
+django-heroku
 gunicorn
 dj-database-url
 whitenoise
