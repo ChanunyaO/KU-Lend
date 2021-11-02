@@ -154,7 +154,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-django_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
+django_heroku.settings(locals())
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
     ALLOWED_HOSTS = ['kulend.herokuapp.com']
