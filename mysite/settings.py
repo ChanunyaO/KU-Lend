@@ -130,10 +130,6 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
@@ -161,7 +157,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-django_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
+django_heroku.settings(locals())
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
     ALLOWED_HOSTS = ['kulend.herokuapp.com']
