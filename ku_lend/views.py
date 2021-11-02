@@ -22,7 +22,7 @@ def results(request, item_id):
     response = "You're looking at the results of item %s."
     return HttpResponse(response % item_id)
 
-@login_required()
+@login_required(login_url='/accounts/login/')
 def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     item.amount_items-=1
