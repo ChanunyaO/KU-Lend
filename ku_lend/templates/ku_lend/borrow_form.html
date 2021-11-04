@@ -1,9 +1,10 @@
 <h1>{{ item.item_name }}</h1>
+Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}
 <ul>
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-    Borrow date : <input type="date" name='borrowdate'><br>
-    Return date : <input type="date" name='returndate'><br>
-    <button type="submit">Confirm</button>
+    <lable> Borrow Date: </lable> <input type='date' name='borrow_date' required='true'>
+    <label>Return Date: </lable> <input type='date' name='return_date' required='true'>
+    <input type="submit" class="btn btn-success" value="Confirm">
 </form>
 </ul>
