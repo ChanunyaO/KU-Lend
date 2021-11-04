@@ -37,13 +37,13 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link disabled">Disabled</a>-->
             </li>
-          </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+<!--          </ul>-->
+<!--          <form class="d-flex">-->
+<!--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
           </form>
         </div>
       </div>
@@ -76,6 +76,9 @@
     <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
 {% endif %}
 <br>
+
+
+
 <br>
 {% if latest_item_list %}
     <ul>
@@ -84,6 +87,9 @@
     {% endfor %}
     </ul>
 {% else %}
+
+
+
 <!--    <p>No item are available.</p>-->
 {% endif %}
 
@@ -107,3 +113,22 @@
     {% endfor %}
   </tbody>
 </table>
+
+{% load socialaccount %}
+{% if user.is_authenticated %}
+<h1>Welcome, {{ user.username }} !</h1>
+<a href="http://127.0.0.1:8000/accounts/logout%22%3ELogout</a>
+{% else %}
+<h1>Login Page</h1>
+<a href="{% provider_login_url 'google' %}">Login with Google</a>
+{% endif %}
+
+{% if latest_item_list %}
+    <ul>
+    {% for item in latest_item_list %}
+    <li><a href="{% url 'ku_lend:borrow_form' item.id %}">{{ item.item_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No item are available.</p>
+{% endif %}
