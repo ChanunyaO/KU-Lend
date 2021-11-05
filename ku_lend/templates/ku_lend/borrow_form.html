@@ -1,10 +1,26 @@
-<h1>{{ item.item_name }}</h1>
-Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}
+<head>
+    <style>
+
+        h1{
+            color: black;
+            font-size: 80px;
+        }
+
+    </style>
+</head>
+<br>
+<br>
+<h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
+    <center><img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:50%"></center>
+<center>
+<font color='#c0c0c0'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
 <ul>
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
     <lable> Borrow Date: </lable> <input type='date' name='borrow_date' required='true'>
+    <br>
     <label>Return Date: </lable> <input type='date' name='return_date' required='true'>
     <input type="submit" class="btn btn-success" value="Confirm">
 </form>
 </ul>
+</center>
