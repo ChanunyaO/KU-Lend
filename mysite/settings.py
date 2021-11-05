@@ -11,6 +11,9 @@ from pathlib import Path
 import dj_database_url
 import os
 import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +49,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+
+    'cloudinary'
 ]
 
 MIDDLEWARE = [
@@ -156,6 +161,16 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+CLOUD_NAME=os.getenv('CLOUD_NAME')
+CLOUD_API=os.getenv('CLOUD_API')
+CLOUD_SECRET=os.getenv('CLOUD_SECRET')
+# adding config
+cloudinary.config(
+  cloud_name = CLOUD_NAME,
+  api_key = CLOUD_API,
+  api_secret = CLOUD_SECRET
+)
+
 django_heroku.settings(locals())
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
