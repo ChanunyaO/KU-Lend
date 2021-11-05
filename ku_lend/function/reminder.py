@@ -10,12 +10,17 @@ from mysite.settings import EMAIL_HOST_USER
 def send_reminder():
     """Send reminder before the return date."""
     now = timezone.now()
-    if now + datetime.timedelta(days=2) == History.return_date:
-        send_mail('Reminder',
-                  f'Please return the item within the returning date',
-                  EMAIL_HOST_USER,
-                  [borrower]
-                  )
+    borrower_list = []
+    history_list = History.objects.all()
+    for history in history_list:
+        if now + datetime.timedelta(days=2) == history.return_date:
+            borrower_list.append(history.borrower_email)   
+    send_mail('Reminder',
+            f'Please return the item within the returning date',
+            EMAIL_HOST_USER,
+            borrower_list
+            )
+
     return None
 
 
