@@ -5,11 +5,13 @@ from django.template import loader
 from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from ku_lend.function.reminder import send_reminder, try_send_mail
 
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
     context = {'latest_item_list': latest_item_list}
+    try_send_mail() #tested
     return render(request, 'ku_lend/index.html', context)
 
 
