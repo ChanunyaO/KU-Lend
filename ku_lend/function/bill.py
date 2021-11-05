@@ -5,7 +5,7 @@ from ku_lend.models import *
 from django.core.mail import send_mail
 
 
-def send_fine():
+def send_bill():
     """Send fine."""
     now = timezone.now()
     if now + datetime.timedelta(days=2) > History.return_date:
