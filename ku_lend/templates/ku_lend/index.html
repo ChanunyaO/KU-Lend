@@ -97,7 +97,7 @@
   <thead>
     <tr>
       <p><th scope="col">NAME</th></p>
-      <p><th scope="col">Photo</th></p>
+      <th scope="col">Photo</th>
       <th scope="col">CAN LEND</th>
       <th scope="col">PICKUP PLACE</th>
       <th scope="col">DETAIL</th>
@@ -106,7 +106,7 @@
     {% for item in items %}
     <tr>
       <th scope="row">{{item.item_name}}</th>
-      <th scope="row">{{item.item_image}}</th>
+      <td><img src="{% item.item_image.url %}" width="500" height="600"></td>
       <td>{{item.status}}</td>
       <td>{{item.pickup_place}}</td>
       <td>{{item.note}}</td>
