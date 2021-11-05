@@ -1,4 +1,6 @@
 from django.db import models
+from ipfs_storage import InterPlanetaryFileSystemStorage
+
 
 class Item(models.Model):
     """Item's information for admin to fill in."""
@@ -9,7 +11,7 @@ class Item(models.Model):
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     amount_items = models.PositiveSmallIntegerField(default=1)
-    item_image = models.ImageField()
+    item_image = models.ImageField(storage=InterPlanetaryFileSystemStorage())
 
     def __str__(self):
         return self.item_name
