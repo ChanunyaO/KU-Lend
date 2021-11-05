@@ -149,6 +149,14 @@ li a:hover {
        {% load socialaccount %}
 {% if user.is_authenticated %}
   <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
+    <h2>Welcome, {{ user.username }} !</h2>
+    <a href="http://127.0.0.1:8000/accounts/logout">Logout</a>
+{% else %}
+
+<!--<h2>Login Page</h2>-->
+    Please Login before lend.
+    <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
+
 {% endif %}
 </ul>
 

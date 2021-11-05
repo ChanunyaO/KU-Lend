@@ -12,7 +12,6 @@ urlpatterns = [
     path('<int:item_id>/', views.borrow_form, name='borrow_form'),
     path('<int:item_id>/results/', views.results, name='results'),
     path('<int:item_id>/confirm/', views.confirm, name='confirm'),
-    path('profile/', history.user_history)
-    #path('profile/', profile.profile)
+    path('profile/', profile.profile),
 
 ]
