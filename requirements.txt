@@ -10,4 +10,3 @@ gunicorn
 dj-database-url
 psycopg2
 whitenoise
-django-ipfs-storage

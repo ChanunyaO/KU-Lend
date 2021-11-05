@@ -141,11 +141,6 @@ AUTHENTICATION_BACKENDS = (
  'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-DEFAULT_FILE_STORAGE = 'ipfs_storage.InterPlanetaryFileSystemStorage'
-
-IPFS_STORAGE_API_URL = 'https://kulend.herokuapp.com:5001/api/v0'
-IPFS_STORAGE_GATEWAY_URL = 'https://ipfs.io/ipfs/'
-
 SITE_ID = 4
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
