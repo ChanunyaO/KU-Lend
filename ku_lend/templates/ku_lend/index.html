@@ -106,7 +106,7 @@
     {% for item in items %}
     <tr>
       <th scope="row">{{item.item_name}}</th>
-      <td><img src="{% item.item_image.url %}" width="500" height="600"></td>
+      <td><img src="{% 'item.item_image.url' %}" width="500" height="600"></td>
       <td>{{item.status}}</td>
       <td>{{item.pickup_place}}</td>
       <td>{{item.note}}</td>
