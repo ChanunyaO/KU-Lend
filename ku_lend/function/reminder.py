@@ -15,11 +15,15 @@ def send_reminder():
     for history in history_list:
         if now + datetime.timedelta(days=2) == history.return_date:
             borrower_list.append(history.borrower_email)   
-    send_mail('Reminder',
-            f'Please return the item within the returning date',
-            EMAIL_HOST_USER,
-            borrower_list
-            )
+    if len(borrower_list) != 0:
+        send_mail('Reminder',
+                """Dear KU student and staff,
+                    Please return the item within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.
+                Respectfully Yours,
+                Ku Lend admin""",
+                EMAIL_HOST_USER,
+                borrower_list
+                )
 
     return None
 
@@ -27,8 +31,11 @@ def send_reminder():
 # tested sending mail
 def try_send_mail():
     send_mail('Reminder',
-    f'Please return the item within the returning date',
-    EMAIL_HOST_USER,
-    ['remegac219@ecofreon.com']
-    )
+                """Dear KU student and staff,
+                Please return the item within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.
+                Respectfully Yours,
+                 Ku Lend admin""",
+                EMAIL_HOST_USER,
+                ['remegac219@ecofreon.com']
+                )
     return None
