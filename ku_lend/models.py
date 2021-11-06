@@ -1,6 +1,7 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 class Item(models.Model):
     """Item's information for admin to fill in."""
     item_name = models.CharField(max_length=200)
@@ -25,7 +26,6 @@ class History(models.Model):
     borrower_email = models.EmailField()
     borrower_fee = models.IntegerField(null=True)
     borrower_paid_status = models.CharField(max_length=50)
-    #Add note
 
     def __str__(self):
         return f'{self.item} is borrowed by {self.borrower} from {self.borrow_date} to {self.return_date}'

@@ -6,6 +6,7 @@ python-decouple
 environ~=1.0
 django-allauth
 Pillow
+django-celery
 gunicorn
 dj-database-url
 psycopg2
