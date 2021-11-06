@@ -13,7 +13,8 @@ from django.contrib.auth import get_user_model
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
-    context = {'latest_item_list': latest_item_list}
+    context = {'latest_item_list': latest_item_list} #danger
+
     # try_send_mail() #tested
     send_reminder()
     send_bill()
@@ -34,7 +35,6 @@ def results(request, item_id):
 @login_required(login_url='/accounts/login/')
 def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    # return HttpResponse(f"You has borrow {item.item_name}. Please, go to {item.pickup_place}.")
     item.amount_items -= 1
     item.save()
 

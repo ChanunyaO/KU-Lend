@@ -181,16 +181,15 @@ li a:hover {
  </center>
 
 <div class="slideshow-container">
-{% if items %}
+{% if latest_item_list %}
         <ul>
-    {% for item in items %}
+    {% for item in latest_item_list %}
             <div class="mySlides fade">
                 <small><a href="{% url 'ku_lend:borrow_form' item.id %}">
               <img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:100%">
               </a></small>
                 <div class="text" >{{ item.item_name }}</div>
             </div>
-
     {% endfor %}
         </ul>
     {% else %}
@@ -205,9 +204,8 @@ li a:hover {
 
 <div style="text-align:center">
     {% for i in items %}
-  <span class="dot" onclick="currentSlide({{forloop.counter}})"></span>
+  <span class="dot" onclick='currentSlide({{forloop.counter}})'></span>
     {% endfor %}
-
 </div>
 
 <script>
