@@ -6,6 +6,7 @@ from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from ku_lend.function.reminder import send_reminder, try_send_mail
+from django.contrib.auth import get_user_model
 
 
 def index(request):
@@ -30,7 +31,12 @@ def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
     item.amount_items-=1
     item.save()
+
+    User = get_user_model()
+    user = User.objects.all()
     history = History(item=item)
+    history.borrower = request.user
+    history.borrower_email = history.borrower.email
     history.borrow_date = request.POST['borrow_date']
     history.return_date = request.POST['return_date']
     history.save()
