@@ -59,7 +59,7 @@ img {vertical-align: middle;}
 
 /* Caption text */
 .text {
-  color: #000000;
+  color: #9B9B9B;
   font-size: 15px;
   padding: 8px 12px;
   position: absolute;
@@ -158,7 +158,7 @@ li a:hover {
 <br>
 <h3><font color='#808080'>KASETSART UNIVERSITY</font></h3>
      <h2><b>WHAT DO YOU WANT TO BORROW?</b></h2>
-     <br>
+
 
 
 
@@ -169,10 +169,10 @@ li a:hover {
    {% load socialaccount %}
 {% if user.is_authenticated %}
 <h1>Welcome, {{ user.username }} !</h1>
-<a href="http://127.0.0.1:8000/accounts/logout">Logout</a>
+<a href="http://127.0.0.1:8000/accounts/logout"><button>Logout</button></a>
 {% else %}
 <h1>Login Page</h1>
-<a href="{% provider_login_url 'google' %}">Login with Google</a>
+     <a href="{% provider_login_url 'google' %}"><button>Login with Google</button></a>
 {% endif %}
  </center>
 
