@@ -186,7 +186,7 @@ li a:hover {
     {% for item in latest_item_list %}
             <div class="mySlides fade">
                 <small><a href="{% url 'ku_lend:borrow_form' item.id %}">
-              <img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:100%">
+              <img src="{{item.item_image.url}}" style="width:100%">
               </a></small>
                 <div class="text" >{{ item.item_name }}</div>
             </div>
