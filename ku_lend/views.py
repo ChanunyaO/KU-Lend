@@ -6,6 +6,8 @@ from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from ku_lend.function.reminder import send_reminder, try_send_mail
+from ku_lend.function.bill import send_bill
+
 from django.contrib.auth import get_user_model
 
 
@@ -14,6 +16,8 @@ def index(request):
     context = {'latest_item_list': latest_item_list}
     # try_send_mail() #tested
     send_reminder()
+    send_bill()
+
     return render(request, 'ku_lend/index.html', context)
 
 
@@ -26,14 +30,12 @@ def results(request, item_id):
     response = "You're looking at the results of item %s."
     return HttpResponse(response % item_id)
 
+
 @login_required(login_url='/accounts/login/')
 def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-
     # return HttpResponse(f"You has borrow {item.item_name}. Please, go to {item.pickup_place}.")
-
-
-    item.amount_items-=1
+    item.amount_items -= 1
     item.save()
 
     User = get_user_model()
