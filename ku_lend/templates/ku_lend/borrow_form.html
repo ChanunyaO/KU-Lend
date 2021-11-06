@@ -149,17 +149,20 @@ img {vertical-align: middle;}
 <h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
     <center><img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:50%"></center>
 <center>
-<font color='#c0c0c0'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
-<ul>
+<font color='#757575'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
+
 
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-    <lable> Borrow Date: </lable> <input type='date' name='borrow_date' required='true'>
+    <font color='#757575'><lable> Borrow Date: </lable></font>
+    <input type='date' name='borrow_date' required='true'>
     <br>
-    <label>Return Date: </lable> <input type='date' name='return_date' required='true'>
+    <font color='#757575'><label>Return Date: </lable></font>
+        <input type='date' name='return_date' required='true'>
     <input type="submit" class="btn btn-success" value="Confirm">
+
 </form>
-</ul>
+
 </center>
 
 </html>
