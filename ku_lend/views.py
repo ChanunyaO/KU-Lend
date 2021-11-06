@@ -11,8 +11,8 @@ from ku_lend.function.reminder import send_reminder, try_send_mail
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
     context = {'latest_item_list': latest_item_list}
-    # try_send_mail() #tested
-    send_reminder()
+    try_send_mail() #tested
+    # send_reminder()
     return render(request, 'ku_lend/index.html', context)
 
 
