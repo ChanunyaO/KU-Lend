@@ -1,17 +1,31 @@
-from datetime import datetime
+from datetime import date, datetime
 from django.utils import timezone
-import datetime
+
 from ku_lend.models import *
 from django.core.mail import send_mail
 
+from mysite.settings import EMAIL_HOST_USER
+
 
 def send_bill():
-    """Send fine."""
+    """Send bill """
     now = timezone.now()
-    if now + datetime.timedelta(days=2) > History.return_date:
-        fee = 10 * now + datetime.timedelta(days=2) > History.return_date
-        send_mail('Reminder',
-                  f'Please return {Item.item_name} on {History.return_date} and please paid {fee} baht for the delay',
-                  None,
-                  [History.borrower_email]
-                  )
+    history_list = History.objects.all()
+    for history in history_list:
+        if now > history.return_date:
+            d0 = now
+            d1 = history.return_date
+            delta = d0 - d1
+            fee = 10 * delta.days
+            history.borrower_fee = fee
+            history.save()
+            send_mail('Billing',
+                      f"""Dear {history.borrower},
+                    Please return as soon as possible and you have to paid {fee} baht
+                Ku Lend admin""",
+                      EMAIL_HOST_USER,
+                      [history.borrower_email]
+                      )
+
+    return None
+
