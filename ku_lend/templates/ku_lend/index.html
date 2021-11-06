@@ -149,13 +149,13 @@ li a:hover {
 <body>
 
 <ul>
-  <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
+  <li><a class="active" href="https://kulend.herokuapp.com/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
-  <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
+  <li style="float:right"><a href="https://kulend.herokuapp.com/profile/">PROFILE</a></li>
 {% endif %}
-
 </ul>
+
 
  <center>
 <br>
@@ -173,7 +173,7 @@ li a:hover {
    {% load socialaccount %}
 {% if user.is_authenticated %}
 <h1>Welcome, {{ user.username }} !</h1>
-<a href="http://127.0.0.1:8000/accounts/logout"><button>Logout</button></a>
+<a href="https://kulend.herokuapp.com/accounts/logout"><button>Logout</button></a>
 {% else %}
      <h4><small><font color='#808080'>Please login before lend.</small></font></h4>
      <a href="{% provider_login_url 'google' %}"><font color='#808080'><button>Login with Google</button></font></a>
@@ -202,9 +202,11 @@ li a:hover {
 </div>
 <br>
 
+
 <div style="text-align:center">
     {% for i in items %}
   <span class="dot" onclick='currentSlide({{forloop.counter}})'></span>
+
     {% endfor %}
 </div>
 

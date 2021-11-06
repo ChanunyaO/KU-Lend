@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Item(models.Model):
@@ -10,7 +11,7 @@ class Item(models.Model):
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     amount_items = models.PositiveSmallIntegerField(default=1)
-    item_image = models.ImageField()
+    item_image = CloudinaryField('image')
 
     def __str__(self):
         return self.item_name
