@@ -37,9 +37,6 @@ def results(request, item_id):
 @login_required(login_url='/accounts/login/')
 def confirm(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
-    item.amount_items -= request.POST["borrow_amount"]
-    item.save()
-
     history = History(item=item)
     history.borrower = request.user
     history.borrower_email = request.user.email
@@ -47,6 +44,13 @@ def confirm(request, item_id):
     history.borrower_fee = 0
     history.borrow_date = request.POST['borrow_date']
     history.return_date = request.POST['return_date']
+    # if int(request.POST["borrow_amount"]) >= item.max_item_each_user:
+    #     context = {"msg":'Not allow to lend.'}
+    #     return render(request, 'ku_lend/borrow_form.html', context)
+    history.borrow_amount = request.POST["borrow_amount"]
+    item.amount_items -= int(history.borrow_amount)
+    item.save()
+
     history.save()
     send_confirm(history.borrower, history.item, history.borrower_email)
     return response.HttpResponseRedirect(reverse('ku_lend:index'))
