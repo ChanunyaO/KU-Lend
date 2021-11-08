@@ -29,8 +29,6 @@ def confirm(request, item_id):
     item.amount_items-=1
     item.save()
 
-    User = get_user_model()
-    user = User.objects.all()
     history = History(item=item)
     history.borrower = request.user
     history.borrower_email = history.borrower.email
