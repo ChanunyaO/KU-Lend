@@ -6,11 +6,14 @@ class Item(models.Model):
     item_name = models.CharField(max_length=200)
     pickup_place = models.CharField(max_length=300)
     owner = models.CharField(max_length=50)
-    status = models.CharField(max_length=10)
+    status = models.CharField(max_length=10, default="Avaliable")
     note = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     amount_items = models.PositiveSmallIntegerField(default=1)
     item_image = models.ImageField()
+    rate_fee = models.IntegerField()
+    max_item_each_user = models.IntegerField()
+    max_day_each_user = models.IntegerField()
 
     def __str__(self):
         return self.item_name
