@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-
-        h1{
-            color: black;
-            font-size: 80px;
-        }
-
+    <title>Profile</title>
+<style>
 ul {
   list-style-type: none;
   margin: 0;
@@ -30,6 +25,22 @@ li a {
 
 li a:hover {
   background-color: #111;
+
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
@@ -132,7 +143,7 @@ img {vertical-align: middle;}
 </style>
 </head>
 <body>
-
+<center>
 <ul>
   <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
        {% load socialaccount %}
@@ -141,28 +152,45 @@ img {vertical-align: middle;}
 {% endif %}
 
 </ul>
+<br>
+<br>
+    <center><img src="https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg" style="width:20%"></center>
+       {% load socialaccount %}
+{% if user.is_authenticated %}
+    {% for i in profile%}
+        {% if user.email == i.email%}
+            <h2>{{i.email}}</h2>
+        {%endif%}
+        {% if user.first_name == i.first_name%}
+            <h2>{{i.first_name}}  {{i.last_name}}</h2>
 
-
+        {% endif %}
+    {% endfor%}
+    {% endif%}
+<font color='#c0c0c0'><h2>History</h2></font>
+       {% load socialaccount %}
+{% if user.is_authenticated %}
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Borrowed Date</th>
+    <th>Return Date</th>
+    <th>Fee</th>
+    <th>Status</th>
+    <th>Note</th>
+  </tr>
+  {% for user in history %}
+  <tr>
+    <td>{{user.item.item_name}}</td>
+    <td>{{user.borrow_date}}</td>
+    <td>{{user.return_date}}</td>
+    <td>{{user.borrower_fee}}</td>
+    <td>{{user.borrower_paid_status}}</td>
+    <td>{{user.item.note}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif%}
+    </center>
 </body>
-<br>
-<br>
-<h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
-    <center><img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:50%"></center>
-<center>
-<font color='#757575'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
-
-
-<form action="{% url 'ku_lend:confirm' item.id %}" method="post">
-    {% csrf_token %}
-    <font color='#757575'><lable> Borrow Date: </lable></font>
-    <input type='date' name='borrow_date' required='true'>
-    <br>
-    <font color='#757575'><label>Return Date: </lable></font>
-        <input type='date' name='return_date' required='true'>
-    <input type="submit" class="btn btn-success" value="Confirm">
-
-</form>
-
-</center>
-
 </html>
