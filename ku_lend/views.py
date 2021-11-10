@@ -44,9 +44,7 @@ def confirm(request, item_id):
     history.borrower_fee = 0
     history.borrow_date = request.POST['borrow_date']
     history.return_date = request.POST['return_date']
-    # if int(request.POST["borrow_amount"]) >= item.max_item_each_user:
-    #     context = {"msg":'Not allow to lend.'}
-    #     return render(request, 'ku_lend/borrow_form.html', context)
+
     history.borrow_amount = request.POST["borrow_amount"]
     item.amount_items -= int(history.borrow_amount)
     item.save()
