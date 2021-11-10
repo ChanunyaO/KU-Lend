@@ -135,10 +135,10 @@ img {vertical-align: middle;}
 <body>
 
 <ul>
-  <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
+  <li><a class="active" href="https://kulend.herokuapp.com/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
-  <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
+  <li style="float:right"><a href="https://kulend.herokuapp.com/profile/">PROFILE</a></li>
 {% endif %}
  <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
 </ul>
@@ -148,7 +148,7 @@ img {vertical-align: middle;}
 <br>
 <br>
 <h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
-    <center><img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:50%"></center>
+    <center><img src="{{item.item_image.url}}" style="width:50%"></center>
 <center>
 <font color='#757575'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
 
