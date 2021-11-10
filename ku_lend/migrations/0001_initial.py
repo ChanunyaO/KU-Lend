@@ -41,7 +41,6 @@ class Migration(migrations.Migration):
                 ('borrower_fee', models.IntegerField()),
                 ('borrower_paid_status', models.CharField(max_length=50)),
                 ('borrow_amount', models.PositiveSmallIntegerField()),
-
                 ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ku_lend.item')),
             ],
         ),
