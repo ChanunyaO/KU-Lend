@@ -129,6 +129,7 @@ img {vertical-align: middle;}
   .prev, .next,.text {font-size: 11px}
 }
 
+
 </style>
 </head>
 <body>
@@ -139,7 +140,7 @@ img {vertical-align: middle;}
 {% if user.is_authenticated %}
   <li style="float:right"><a href="https://kulend.herokuapp.com/profile/">PROFILE</a></li>
 {% endif %}
-
+ <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
 </ul>
 
 
@@ -154,15 +155,104 @@ img {vertical-align: middle;}
 
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-    <font color='#757575'><lable> Borrow Date: </lable></font>
-    <input type='date' name='borrow_date' required='true'>
+    <font color='#757575'>If you return rate you must pay {{ item.rate_fee }} bath per day</font>
     <br>
+    <font color='#757575'>The amount of {{ item.item_name }} that can be lend : {{ item.amount_items }}</font>
+    <br>
+    <font color='#757575'><label>How many stuff you want to borrow : </lable></font>
+    <input type="number" id="quantity" name='borrow_amount' min = '1' max = {{item.max_item_each_user}}>
+    <button onclick="Number()">Confirm number</button>
+    <br>
+    <div id= "confirm_number" style="display:none">
+    <font color='#757575'><lable>Pick up Date: </lable></font>
+    <input type='date' id="datefield" name='borrow_date' required='true'>
+    <button onclick="myFunction()">Confirm pick up date</button>
+    <br>
+    <div id= "send_date" style="display:none">
     <font color='#757575'><label>Return Date: </lable></font>
-        <input type='date' name='return_date' required='true'>
-    <input type="submit" class="btn btn-success" value="Confirm">
-
+    <input type='date' id="datefields" name='return_date' required='true'>
+    <br>
+    <input onclick="ConfirmLend()" type="submit" class="btn btn-success" value="Confirm">
+    </div>
+    </div>
 </form>
 
 </center>
 
+<script>
+function Number() {
+var item_number = document.getElementById("quantity").value;
+  var get_confirm_number = document.getElementById("confirm_number");
+  if (item_number > {{item.max_item_each_user}}){
+    document.getElementById("quantity").value = {{item.max_item_each_user}};
+  }
+  if (item_number > {{item.amount_items}}){
+    document.getElementById("quantity").value = {{item.amount_items}};
+  }
+  if (get_confirm_number.style.display === "none") {
+    get_confirm_number.style.display = "block";
+  }
+  }
+</script>
+
+<script>
+function ConfirmLend() {
+var item_number = document.getElementById("quantity").value;
+  if (item_number > {{item.max_item_each_user}}){
+    if (item_number > {{item.amount_items}}){
+      document.getElementById("quantity").value = {{item.amount_items}};
+      alert("Success to Lend but you can only lend {{item.amount_items}} device, Please check your email for information.");
+    }else{
+      document.getElementById("quantity").value = {{item.max_item_each_user}};
+      alert("Success to Lend but you can only lend {{item.max_item_each_user}} device, Please check your email for information.");
+    }
+  }
+  else{
+    alert("Success to Lend!, Please check your email for information.");
+    }
+}
+</script>
+
+<script>
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10){
+  dd='0'+dd
+}
+if(mm<10){
+  mm='0'+mm
+}
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("datefield").setAttribute("min", today);
+</script>
+
+<script>
+
+function myFunction() {
+var get_send_date = document.getElementById("send_date");
+  if (get_send_date.style.display === "none") {
+    get_send_date.style.display = "block";
+  }
+
+var days = {{item.max_day_each_user}}
+var pick_date = document.getElementById("datefield").value
+console.log(pick_date)
+var today = new Date(pick_date);
+var dd = today.getDate()+days;
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10){
+  dd='0'+dd
+}
+if(mm<10){
+  mm='0'+mm
+}
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("datefields").setAttribute("min", pick_date);
+document.getElementById("datefields").setAttribute("max", today);
+}
+</script>
 </html>
+

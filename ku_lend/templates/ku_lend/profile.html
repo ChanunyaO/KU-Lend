@@ -148,7 +148,10 @@ img {vertical-align: middle;}
   <li><a class="active" href="https://kulend.herokuapp.com/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
+
   <li style="float:right"><a href="https://kulend.herokuapp.com/profile/">PROFILE</a></li>
+  <li style="float:right"><a href="https://kulend.herokuapp.com/admin/">ADMIN</a></li>
+
 {% endif %}
 
 </ul>
