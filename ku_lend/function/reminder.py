@@ -10,6 +10,7 @@ from mysite.settings import EMAIL_HOST_USER
 def send_reminder():
     """Send reminder before the return date."""
     now = timezone.now()
+    print('sent')
     history_list = History.objects.all()
     for history in history_list:
         if now + datetime.timedelta(days=2) <= history.return_date:

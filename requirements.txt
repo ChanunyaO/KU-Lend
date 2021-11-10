@@ -12,3 +12,5 @@ dj-database-url
 psycopg2
 whitenoise
 cloudinary
+APScheduler==3.0.0
+
