@@ -19,4 +19,4 @@ Respectfully Yours,
                 [email]
                 )
 
-    return None
+    return email
