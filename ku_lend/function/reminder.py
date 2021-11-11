@@ -11,6 +11,7 @@ def send_reminder():
     """Send reminder before the return date."""
     now = timezone.now()
     history_list = History.objects.all()
+    borrower_list = []
     for history in history_list:
         if now + datetime.timedelta(days=2) <= history.return_date:
             send_mail('Reminder',
@@ -21,8 +22,9 @@ def send_reminder():
                 EMAIL_HOST_USER,
                 [history.borrower_email]
                 )
+            borrower_list.append(history.borrower_email)
 
-    return None
+    return borrower_list
 
 
 # tested sending mail
