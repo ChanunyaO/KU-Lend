@@ -17,8 +17,9 @@ def send_reminder():
             send_mail('Reminder',
                 f"""Dear {history.borrower},
                     Please return the item within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.
-                Respectfully Yours,
-                Ku Lend admin""",
+
+Respectfully Yours,
+        Ku Lend admin""",
                 EMAIL_HOST_USER,
                 [history.borrower_email]
                 )
