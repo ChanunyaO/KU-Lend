@@ -9,7 +9,7 @@ from mysite.settings import EMAIL_HOST_USER
 
 def send_confirm(borrower, item, email):
     """Send reminder before the return date."""
-    send_mail('Reminder',
+    send_mail('Confirm',
                 f"""Dear {borrower},
                     Please return the {item} within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.
                 Respectfully Yours,
