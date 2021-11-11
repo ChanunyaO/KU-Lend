@@ -91,6 +91,7 @@ class ConfirmTests(TestCase):
         self.item.save()
 
     def test_not_confirm(self):
+        """The mail will not send if the borrower does not comfirm yet."""
         self.borrower1 = History.objects.create(
                                         item = self.item,
                                         borrow_date = timezone.now(),
@@ -105,6 +106,7 @@ class ConfirmTests(TestCase):
         self.assertNotEqual(confirm_mail.send_confirm, self.borrower1.borrower_email)
 
     def test_confirm(self):
+        """The mail will send to borrower email after confirm the form."""
         self.borrower1 = History.objects.create(
                                         item = self.item,
                                         borrow_date = timezone.now(),
@@ -118,3 +120,4 @@ class ConfirmTests(TestCase):
         self.borrower1.save()
         confirm = confirm_mail.send_confirm(self.borrower1.borrower, self.item, self.borrower1.borrower_email)
         self.assertEqual(confirm, self.borrower1.borrower_email)
+
