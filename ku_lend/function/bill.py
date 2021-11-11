@@ -23,6 +23,7 @@ def send_bill():
             send_mail('Billing',
                       f"""Dear {history.borrower},
                     Please return as soon as possible and you have to paid {fee} baht
+
 Respectfully Yours,
         Ku Lend admin""",
                       EMAIL_HOST_USER,
