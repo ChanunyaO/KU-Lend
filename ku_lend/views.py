@@ -7,12 +7,20 @@ from ku_lend.function.confirm_mail import send_confirm
 from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from ku_lend.function.reminder import send_reminder, try_send_mail
+from ku_lend.function.bill import send_bill
+
 from django.contrib.auth import get_user_model
 
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
-    context = {'latest_item_list': latest_item_list}
+    context = {'latest_item_list': latest_item_list} #danger
+
+    # try_send_mail() #tested
+    send_reminder()
+    send_bill()
+
     return render(request, 'ku_lend/index.html', context)
 
 
@@ -24,6 +32,7 @@ def borrow_form(request, item_id):
 def results(request, item_id):
     response = "You're looking at the results of item %s."
     return HttpResponse(response % item_id)
+
 
 @login_required(login_url='/accounts/login/')
 def confirm(request, item_id):
