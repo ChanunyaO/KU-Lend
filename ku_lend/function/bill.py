@@ -29,3 +29,19 @@ def send_bill():
 
     return None
 
+
+def test_send_bill(test_date):
+    """Send bill """
+    now = test_date
+    history_list = History.objects.all()
+    for history in history_list:
+        if now > history.return_date:
+            d0 = now
+            d1 = history.return_date
+            delta = d0 - d1
+            fee = 10 * delta.days
+            history.borrower_fee = fee
+            history.save()
+            return history.borrower_fee
+
+
