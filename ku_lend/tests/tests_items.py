@@ -25,5 +25,5 @@ class AddItems(TestCase):
         self.assertEqual(Item.object.count(), 1)
 
     def check_item_added(self):
-        """test amount of item that added."""
+        """test laptop already added"""
         self.assertEqual(Item.objects.get(pk=1).item_name, 'Laptop')
