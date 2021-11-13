@@ -1,7 +1,6 @@
 from ku_lend.models import Item, History
 from ku_lend.function import reminder, confirm_mail, bill
 from django.test import TestCase
-from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
 
