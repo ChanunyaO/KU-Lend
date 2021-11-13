@@ -11,18 +11,21 @@ def send_reminder():
     """Send reminder before the return date."""
     now = timezone.now()
     history_list = History.objects.all()
+    borrower_list = []
     for history in history_list:
-        if now + datetime.timedelta(days=2) <= history.return_date:
+        if now + datetime.timedelta(days=2) >= history.return_date and now <= history.return_date :
             send_mail('Reminder',
                 f"""Dear {history.borrower},
                     Please return the item within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.
-                Respectfully Yours,
-                Ku Lend admin""",
+
+Respectfully Yours,
+        Ku Lend admin""",
                 EMAIL_HOST_USER,
                 [history.borrower_email]
                 )
+            borrower_list.append(history.borrower_email)
 
-    return None
+    return borrower_list
 
 
 # tested sending mail
