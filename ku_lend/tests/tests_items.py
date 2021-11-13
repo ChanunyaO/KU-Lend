@@ -27,3 +27,6 @@ class AddItems(TestCase):
     def check_item_added(self):
         """test laptop already added"""
         self.assertEqual(Item.objects.get(pk=1).item_name, 'Laptop')
+        self.assertEqual(Item.objects.get(pk=1).pickup_place, 'iup')
+        self.assertEqual(Item.objects.get(pk=1).owner, 'faculty of engineering')
+        self.assertEqual(Item.objects.get(pk=1).note, '-')
