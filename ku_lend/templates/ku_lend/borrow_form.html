@@ -198,6 +198,13 @@ var item_number = document.getElementById("quantity").value;
 <script>
 function ConfirmLend() {
 var item_number = document.getElementById("quantity").value;
+var item_date_field  = document.getElementById("datefield").value;
+var item_date_fields  = document.getElementById("datefields").value;
+const isEmpty = str => !str.trim().length;
+if (isEmpty(item_number)){
+    alert("You must fill out the form before confirm.");
+}
+else{
   if (item_number > {{item.max_item_each_user}}){
     if (item_number > {{item.amount_items}}){
       document.getElementById("quantity").value = {{item.amount_items}};
@@ -210,6 +217,7 @@ var item_number = document.getElementById("quantity").value;
   else{
     alert("Success to Lend!, Please check your email for information.");
     }
+}
 }
 </script>
 
