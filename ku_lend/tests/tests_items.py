@@ -20,6 +20,7 @@ class AddItems(TestCase):
         )
         self.item.save()
 
+
     def check_item_added(self):
         """test amount of item that added."""
         self.assertEqual(Item.object.count(), 1)
