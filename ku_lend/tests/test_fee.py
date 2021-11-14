@@ -71,21 +71,23 @@ class FeeTests(TestCase):
 
     def test_return_on_date_fee(self):
         """return on time"""
-        now = timezone.now()
-        self.borrower1_fee = bill.test_send_bill(now)
-        self.assertEqual(0, self.borrower1.borrower_fee)
+        now_on_date = timezone.now()
+        self.borrower1_fee = bill.test_send_bill(now_on_date)
+        self.assertEqual(0, self.borrower1_fee)
+
 
     def test_return_late(self):
         """test fee """
-        now = timezone.now() + timedelta(days=1)
-        self.borrower2_fee = bill.test_send_bill(now)
-        now = timezone.now() + timedelta(days=2)
-        self.borrower3_fee = bill.test_send_bill(now)
+        now_late = timezone.now() + timedelta(days=1)
+        self.borrower2_fee = bill.test_send_bill(now_late)
+        now_late = timezone.now() + timedelta(days=2)
+        self.borrower3_fee = bill.test_send_bill(now_late)
         self.assertEqual(10, self.borrower2_fee)
         self.assertEqual(20, self.borrower3_fee)
 
     def test_not_yet_time(self):
         """test it's not time yet"""
-        now = timezone.now()
-        self.borrower4_fee = bill.test_send_bill(now)
+        now_not_time = timezone.now()
+        self.borrower4_fee = bill.test_send_bill(now_not_time)
         self.assertEqual(0, self.borrower4_fee)
+
