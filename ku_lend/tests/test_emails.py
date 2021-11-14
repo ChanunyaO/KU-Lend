@@ -171,7 +171,7 @@ class BillingTests(TestCase):
                                         borrower_paid_status = "Not paid",
                                         borrow_amount = 1
                                         )
-        self.borrower2.save()
+        self.borrower3.save()
 
     def test_before_return_date(self):
         """The server will not send email before the return date."""
