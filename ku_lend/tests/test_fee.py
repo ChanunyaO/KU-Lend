@@ -46,11 +46,24 @@ class FeeTests(TestCase):
         )
         self.borrower2.save()
 
+        self.borrower3 = History.objects.create(
+            item=self.item,
+            borrow_date=timezone.now() - timedelta(days=4),
+            return_date=timezone.now() - timedelta(days=2),
+            borrower="Borrower3",
+            borrower_email="borrower3@test.com",
+            borrower_fee=0,
+            borrower_paid_status="Not paid",
+            borrow_amount=1
+        )
+        self.borrower3.save()
+
     def test_return_on_date_fee(self):
         """return on time"""
         send_bill = bill.test_send_bill(timezone.now())
-        self.assertEqual(10, send_bill)
+        self.assertEqual(0, send_bill())
 
-    # def test_fee(self):
-    #     """test fee """
-    #     self.assertEqual(10, self.borrower1.test_send_bill())
+    def test_fee(self):
+        """test fee """
+        self.assertEqual(10, self.borrower2.test_send_bill())
+        self.assertEqual(20, self.borrower3.test_send_bill())
