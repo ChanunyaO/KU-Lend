@@ -1,7 +1,6 @@
 from ku_lend.models import Item, History
 from ku_lend.function import bill
 from django.test import TestCase
-from django.contrib.auth.models import User
 from datetime import timedelta
 from django.utils import timezone
 
@@ -24,8 +23,8 @@ class FeeTests(TestCase):
 
         self.borrower1 = History.objects.create(
             item=self.item,
-            borrow_date=timezone.now(),
-            return_date=timezone.now() + timedelta(days=10),
+            borrow_date=timezone.now() - timedelta(days=1),
+            return_date=timezone.now(),
             borrower="Borrower1",
             borrower_email="borrower1@test.com",
             borrower_fee=0,
@@ -37,7 +36,7 @@ class FeeTests(TestCase):
         self.borrower2 = History.objects.create(
             item=self.item,
             borrow_date=timezone.now() - timedelta(days=4),
-            return_date=timezone.now() - timedelta(days=1),
+            return_date=timezone.now(),
             borrower="Borrower2",
             borrower_email="borrower2@test.com",
             borrower_fee=0,
@@ -58,12 +57,35 @@ class FeeTests(TestCase):
         )
         self.borrower3.save()
 
+        self.borrower4 = History.objects.create(
+            item=self.item,
+            borrow_date=timezone.now() - timedelta(days=4),
+            return_date=timezone.now() + timedelta(days=2),
+            borrower="Borrower4",
+            borrower_email="borrower4@test.com",
+            borrower_fee=0,
+            borrower_paid_status="Not paid",
+            borrow_amount=1
+        )
+        self.borrower3.save()
+
     def test_return_on_date_fee(self):
         """return on time"""
-        send_bill = bill.test_send_bill(timezone.now())
-        self.assertEqual(0, send_bill())
+        now = timezone.now()
+        self.borrower1_fee = bill.test_send_bill(now)
+        self.assertEqual(0, self.borrower1.borrower_fee)
 
     def test_fee(self):
         """test fee """
-        self.assertEqual(10, self.borrower2.test_send_bill())
-        self.assertEqual(20, self.borrower3.test_send_bill())
+        now = timezone.now() + timedelta(days=1)
+        self.borrower2_fee = bill.test_send_bill(now)
+        now = timezone.now() + timedelta(days=2)
+        self.borrower3_fee = bill.test_send_bill(now)
+        self.assertEqual(10, self.borrower2_fee)
+        self.assertEqual(20, self.borrower3_fee)
+
+    def test_not_yet_time(self):
+        """test it's not time yet"""
+        now = timezone.now()
+        self.borrower4_fee = bill.test_send_bill(now)
+        self.assertEqual(0, self.borrower4_fee)
