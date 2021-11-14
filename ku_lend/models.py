@@ -29,6 +29,7 @@ class History(models.Model):
     borrower_fee = models.IntegerField(null=True)
     borrower_paid_status = models.CharField(max_length=50)
     borrow_amount = models.PositiveSmallIntegerField()
+    return_status = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.item} is borrowed by {self.borrower} from {self.borrow_date} to {self.return_date}'
