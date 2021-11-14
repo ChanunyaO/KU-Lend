@@ -67,7 +67,7 @@ class FeeTests(TestCase):
             borrower_paid_status="Not paid",
             borrow_amount=1
         )
-        self.borrower3.save()
+        self.borrower4.save()
 
     def test_return_on_date_fee(self):
         """return on time"""
