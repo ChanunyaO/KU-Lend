@@ -194,3 +194,13 @@ class BillingTests(TestCase):
         """The server will send email after the return date."""
         billing_func = bill.send_bill()
         self.assertIn(self.borrower3.borrower_email, billing_func)
+
+    def test_after_but_return(self):
+        """The server will not send email after the staff change return status."""
+        billing_func = bill.send_bill()
+        self.assertIn(self.borrower3.borrower_email, billing_func)
+        
+        self.borrower3.return_status = True
+        self.borrower3.save()
+        billing_func2 = bill.send_bill()
+        self.assertNotIn(self.borrower3.borrower_email, billing_func2)
