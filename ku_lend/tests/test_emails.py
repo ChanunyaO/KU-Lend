@@ -66,6 +66,13 @@ class ReminderTests(TestCase):
         """The server will send email before the reminder date."""
         reminder_func = reminder.send_reminder()
         self.assertIn(self.borrower2.borrower_email, reminder_func)
+
+    def test_return_before(self):
+        """The server will not send email if the return_status is True."""
+        self.borrower2.return_status = True
+        self.borrower2.save()
+        reminder_func = reminder.send_reminder()
+        self.assertNotIn(self.borrower2.borrower_email, reminder_func)
         
     def test_after(self):
         """The server will not send email before the reminder date."""
