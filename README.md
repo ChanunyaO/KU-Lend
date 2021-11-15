@@ -12,6 +12,7 @@ This website would reduce the process of borrowing and the staff can prepare the
 - [Iteration 2 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-2-Plan)   
 - [Iteration 3 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-3-Plan)     
 - [Iteration 4 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-4-Plan)   
+- [Iteration 5 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-5-Plan)   
 
 ### Other Project Documents
 - [Code review script](https://github.com/ChanunyaO/KU-Lend/wiki/Code-Review-Script)     
