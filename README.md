@@ -17,6 +17,7 @@ https://kulend.herokuapp.com/
 - [Iteration 5 Plan](https://github.com/ChanunyaO/KU-Lend/wiki/Iteration-5-Plan)
 
 ### Other Project Documents
+- [Installation](https://github.com/ChanunyaO/KU-Lend/wiki/Installation)
 - [Code review script](https://github.com/ChanunyaO/KU-Lend/wiki/Code-Review-Script)
 - [Code review checklist](https://github.com/ChanunyaO/KU-Lend/wiki/Checklist)
 
