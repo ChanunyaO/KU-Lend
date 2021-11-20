@@ -10,13 +10,6 @@ class SeleniumStaffTests(LiveServerTestCase):
 
     def setUp(self):
         """Set up for testing."""
-        # options = webdriver.ChromeOptions()
-        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        # options.add_argument('--headless')
-        # self.browser = webdriver.Chrome(options=options)
-        
-        # url = "http://127.0.0.1:8000/"
-        # self.browser.get(url)
         self.browser = webdriver.Chrome('/Users/whachanunya/Desktop/KU-Lend/chromedriver')
         url = "http://127.0.0.1:8000/"
         self.browser.get(url)
