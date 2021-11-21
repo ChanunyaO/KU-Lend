@@ -17,35 +17,18 @@ def send_bill():
             d0 = now
             d1 = history.return_date
             delta = d0 - d1
-            fee = 10 * delta.days
-            history.borrower_fee = fee
+            history.borrower_fee = history.item.rate_fee * delta.days
             history.save()
             send_mail('Billing',
-                      f"""Dear {history.borrower},
-                    Please return as soon as possible and you have to paid {fee} baht
+                      f"""Dear {history.borrower.title()},
+                    Please return {history.item} to {history.item.owner.title()} at {history.item.pickup_place} as soon as possible. And unfortunately, \
+{history.item}'s rate fee is {history.item.rate_fee} baht per day, so do not forget to pay {history.borrower_fee} baht when return {history.item}.
 
 Respectfully Yours,
-        Ku Lend admin""",
+        Ku-Lend Admin""",
                       EMAIL_HOST_USER,
                       [history.borrower_email]
                       )
             borrower_list.append(history.borrower_email)
 
     return borrower_list
-
-
-def test_send_bill(test_date):
-    """Send bill """
-    now = test_date
-    history_list = History.objects.all()
-    for history in history_list:
-        if now > history.return_date:
-            d0 = now
-            d1 = history.return_date
-            delta = d0 - d1
-            fee = 10 * delta.days
-            history.borrower_fee = fee
-            history.save()
-            return history.borrower_fee
-
-
