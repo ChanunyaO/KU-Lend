@@ -13,7 +13,7 @@ def send_reminder():
     history_list = History.objects.all()
     borrower_list = []
     for history in history_list:
-        if now + datetime.timedelta(days=2) >= history.return_date and now <= history.return_date :
+        if now + datetime.timedelta(days=2) >= history.return_date and now <= history.return_date and history.return_status == False:
             send_mail('Reminder',
                 f"""Dear {history.borrower},
                     Please return the item within the returning date. However, if you do not turn in within the return date, the item will calculate the fee automatically.

@@ -6,3 +6,4 @@ environ~=1.0
 django-allauth
 Pillow
 django-celery
+selenium
