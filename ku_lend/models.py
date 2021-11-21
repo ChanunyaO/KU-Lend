@@ -16,7 +16,6 @@ class Item(models.Model):
     max_item_each_user = models.IntegerField()
     max_day_each_user = models.IntegerField()
 
-
     def __str__(self):
         return self.item_name
 
