@@ -5,18 +5,15 @@ from ku_lend.function.confirm_mail import send_confirm
 from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from ku_lend.function.reminder import send_reminder, try_send_mail
+from ku_lend.function.reminder import send_reminder
 from ku_lend.function.bill import send_bill
 
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
     context = {'latest_item_list': latest_item_list} #danger
-
-    # try_send_mail() #tested
-    #send_reminder()
-    #send_bill()
-
+    send_reminder()
+    send_bill()
     return render(request, 'ku_lend/index.html', context)
 
 
