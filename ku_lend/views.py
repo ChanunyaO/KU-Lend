@@ -14,8 +14,8 @@ def index(request):
     context = {'latest_item_list': latest_item_list} #danger
 
     # try_send_mail() #tested
-    send_reminder()
-    send_bill()
+    #send_reminder()
+    #send_bill()
 
     return render(request, 'ku_lend/index.html', context)
 
