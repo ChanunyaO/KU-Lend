@@ -129,22 +129,38 @@ img {vertical-align: middle;}
   .prev, .next,.text {font-size: 11px}
 }
 
-
 </style>
+
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+</style>
+
 </head>
+
+
 <body>
 
+
 <ul>
+    <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
   <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
   <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
 {% endif %}
- <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
+
 </ul>
 
 
-</body>
+
 <br>
 <br>
 <h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
@@ -178,6 +194,9 @@ img {vertical-align: middle;}
 </form>
 
 </center>
+<a href="https://github.com/ChanunyaO/KU-Lend"><img src="https://aws1.discourse-cdn.com/github/original/3X/4/6/4607bf071815b928202030de4b8de5b498581a2b.png"
+  alt="HTML tutorial" style="width:60px;height:60px;" ALIGN = "RIGHT">
+</a>
 
 <script>
 function Number() {
@@ -262,5 +281,8 @@ document.getElementById("datefields").setAttribute("min", pick_date);
 document.getElementById("datefields").setAttribute("max", today);
 }
 </script>
+
+
+</body>
 </html>
 
