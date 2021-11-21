@@ -162,8 +162,11 @@ li a:hover {
      <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
+
       <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
+
 {% endif %}
+<li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
 
 <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
 </ul>
