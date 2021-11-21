@@ -13,7 +13,7 @@ def send_bill():
     history_list = History.objects.all()
     borrower_list = []
     for history in history_list:
-        if now > history.return_date + timedelta(days=1):
+        if now > history.return_date + timedelta(days=1) and history.return_status == False:
             d0 = now
             d1 = history.return_date
             delta = d0 - d1
