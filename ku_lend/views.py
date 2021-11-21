@@ -48,5 +48,5 @@ def confirm(request, item_id):
     history.borrow_date = request.POST['borrow_date']
     history.return_date = request.POST['return_date']
     history.save()
-    send_confirm(history.borrower, history.item, history.borrower_email)
+    send_confirm(history.borrower, history.item, history.borrower_email, history.return_date, item.rate_fee)
     return response.HttpResponseRedirect(reverse('ku_lend:index'))
