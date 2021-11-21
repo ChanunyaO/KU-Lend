@@ -18,4 +18,4 @@ def send_confirm(borrower, item, email):
                 [email]
                 )
 
-    return None
+    return email

@@ -7,10 +7,12 @@ environ~=1.0
 django-allauth
 Pillow
 django-celery
+selenium
 gunicorn
 dj-database-url
 psycopg2
 whitenoise
 cloudinary
 APScheduler==3.0.0
+
 

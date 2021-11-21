@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
 #from decouple import config
 import dj_database_url
 import os
@@ -17,6 +18,7 @@ import django_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -155,6 +157,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 4
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

@@ -1,7 +1,5 @@
-from django.db import models
-from django.shortcuts import redirect, render, get_object_or_404
-from django.http import HttpResponse, Http404, response
-from django.template import loader
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, response
 
 from ku_lend.function.confirm_mail import send_confirm
 from .models import History, Item
@@ -10,12 +8,12 @@ from django.contrib.auth.decorators import login_required
 from ku_lend.function.reminder import send_reminder, try_send_mail
 from ku_lend.function.bill import send_bill
 
-from django.contrib.auth import get_user_model
-
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
+
     context = {'latest_item_list': latest_item_list}
+
 
     return render(request, 'ku_lend/index.html', context)
 

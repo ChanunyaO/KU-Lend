@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import timedelta
 from django.utils import timezone
 
 from ku_lend.models import *
@@ -11,8 +11,9 @@ def send_bill():
     """Send bill """
     now = timezone.now()
     history_list = History.objects.all()
+    borrower_list = []
     for history in history_list:
-        if now > history.return_date:
+        if now > history.return_date + timedelta(days=1) and history.return_status == False:
             d0 = now
             d1 = history.return_date
             delta = d0 - d1
@@ -22,10 +23,29 @@ def send_bill():
             send_mail('Billing',
                       f"""Dear {history.borrower},
                     Please return as soon as possible and you have to paid {fee} baht
-                Ku Lend admin""",
+
+Respectfully Yours,
+        Ku Lend admin""",
                       EMAIL_HOST_USER,
                       [history.borrower_email]
                       )
+            borrower_list.append(history.borrower_email)
 
-    return None
+    return borrower_list
+
+
+def test_send_bill(test_date):
+    """Send bill """
+    now = test_date
+    history_list = History.objects.all()
+    for history in history_list:
+        if now > history.return_date:
+            d0 = now
+            d1 = history.return_date
+            delta = d0 - d1
+            fee = 10 * delta.days
+            history.borrower_fee = fee
+            history.save()
+            return history.borrower_fee
+
 
