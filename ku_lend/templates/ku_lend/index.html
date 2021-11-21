@@ -159,16 +159,17 @@ li a:hover {
 <body>
 
 <ul>
-     <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
+
+  <li><a class="active" href="https://kulend.herokuapp.com/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
 
-      <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
 
+  <li style="float:right"><a href="https://kulend.herokuapp.com/profile/">PROFILE</a></li>
 {% endif %}
-<li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
-
+<li style="float:right"><a href="https://kulend.herokuapp.com/admin/">STAFF</a></li>
 </ul>
+
 
  <center>
 <br>
@@ -176,17 +177,10 @@ li a:hover {
 <h3><font color='#808080'>KASETSART UNIVERSITY</font></h3>
      <h2><font color='#303030'><b>WHAT DO YOU WANT TO BORROW?</b></font></h2>
 
-
-
-
-{% load socialaccount %}
-    {% load static %}
-    {% static "" as baseUrl %}
-
    {% load socialaccount %}
 {% if user.is_authenticated %}
 <h1>Welcome, {{ user.username }} !</h1>
-<a href="http://127.0.0.1:8000/accounts/logout"><button>Logout</button></a>
+<a href="https://kulend.herokuapp.com/accounts/logout"><button>Logout</button></a>
 {% else %}
      <h4><small><font color='#808080'>Please login before lend.</small></font></h4>
      <a href="{% provider_login_url 'google' %}"><font color='#808080'><button>Login with Google</button></font></a>
@@ -199,7 +193,7 @@ li a:hover {
     {% for item in latest_item_list %}
             <div class="mySlides fade">
                 <small><a href="{% url 'ku_lend:borrow_form' item.id %}">
-              <img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:100%">
+              <img src="{{item.item_image.url}}" style="width:100%">
               </a></small>
                 <div class="text" >{{ item.item_name }}</div>
             </div>
@@ -220,9 +214,11 @@ li a:hover {
 </a>
 <br>
 
+
 <div style="text-align:center">
     {% for i in items %}
   <span class="dot" onclick='currentSlide({{forloop.counter}})'></span>
+
     {% endfor %}
 </div>
 

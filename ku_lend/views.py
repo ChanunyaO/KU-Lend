@@ -11,11 +11,9 @@ from ku_lend.function.bill import send_bill
 
 def index(request):
     latest_item_list = Item.objects.order_by('-item_name')[:5]
-    context = {'latest_item_list': latest_item_list} #danger
 
-    # try_send_mail() #tested
-    #send_reminder()
-    #send_bill()
+    context = {'latest_item_list': latest_item_list}
+
 
     return render(request, 'ku_lend/index.html', context)
 
