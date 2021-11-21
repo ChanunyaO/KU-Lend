@@ -141,20 +141,42 @@ img {vertical-align: middle;}
 }
 
 </style>
+
+<style>
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+}
+</style>
+
 </head>
 <body>
+
+
 <center>
 <ul>
   <li><a class="active" href="http://127.0.0.1:8000/">KU LEND</a></li>
        {% load socialaccount %}
 {% if user.is_authenticated %}
   <li style="float:right"><a href="http://127.0.0.1:8000/profile/">PROFILE</a></li>
+    <li style="float:right"><a href="http://127.0.0.1:8000/admin/">ADMIN</a></li>
 {% endif %}
 
 </ul>
 <br>
 <br>
-    <center><img src="https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg" style="width:20%"></center>
+    <center>
+      {% if user.socialaccount_set.all.0.get_avatar_url %}
+      <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width:20%">
+      {% else %}
+      <img src="https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg" style="width:20%">
+      {% endif %}
+    </center>
        {% load socialaccount %}
 {% if user.is_authenticated %}
     {% for i in profile%}
@@ -192,5 +214,12 @@ img {vertical-align: middle;}
 </table>
 {% endif%}
     </center>
+    <div class="footer">
+      <a href="https://github.com/ChanunyaO/KU-Lend">
+    <img src="https://aws1.discourse-cdn.com/github/original/3X/4/6/4607bf071815b928202030de4b8de5b498581a2b.png"
+         alt="HTML tutorial" style="width:60px;height:60px;" ALIGN = "RIGHT">
+    </a>
+    </div>
+    
 </body>
 </html>

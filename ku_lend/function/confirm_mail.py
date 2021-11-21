@@ -1,6 +1,3 @@
-from datetime import datetime
-from django.utils import timezone
-import datetime
 from ku_lend.models import *
 from django.core.mail import send_mail
 
@@ -19,4 +16,4 @@ Respectfully Yours,
                 [email]
                 )
 
-    return None
+    return email

@@ -1,4 +1,3 @@
-import datetime
 from ku_lend.models import *
 
 def check_status(item, borrow_date, return_date):
