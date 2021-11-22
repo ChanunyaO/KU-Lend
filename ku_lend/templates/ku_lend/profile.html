@@ -204,8 +204,8 @@ img {vertical-align: middle;}
   {% for user in history %}
   <tr>
     <td>{{user.item.item_name}}</td>
-    <td>{{user.borrow_date}}</td>
-    <td>{{user.return_date}}</td>
+    <td>{{user.borrow_date.date}}</td>
+    <td>{{user.return_date.date}}</td>
     <td>{{user.borrower_fee}}</td>
     <td>{{user.borrower_paid_status}}</td>
     <td>{{user.item.note}}</td>

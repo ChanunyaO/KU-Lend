@@ -221,6 +221,7 @@ var item_number = document.getElementById("quantity").value;
 <script>
 function ConfirmLend() {
 var item_number = document.getElementById("quantity").value;
+<!--document.getElementById("datefield").disabled = false;-->
 var item_date_field  = document.getElementById("datefield").value;
 var item_date_fields  = document.getElementById("datefields").value;
 const isEmpty = str => !str.trim().length;
@@ -263,9 +264,11 @@ document.getElementById("datefield").setAttribute("min", today);
 
 function myFunction() {
 var get_send_date = document.getElementById("send_date");
-  if (get_send_date.style.display === "none") {
+  if (get_send_date.style.display === "none" && document.getElementById("datefield").value) {
     get_send_date.style.display = "block";
+    document.getElementById("datefield").readOnly = true;
   }
+
 
 var days = {{item.max_day_each_user}}
 var pick_date = document.getElementById("datefield").value
@@ -283,7 +286,6 @@ if(mm<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefields").setAttribute("min", pick_date);
 document.getElementById("datefields").setAttribute("max", today);
-document.getElementById("datefield").readOnly = true;
 }
 </script>
 
