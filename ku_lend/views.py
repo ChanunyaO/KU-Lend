@@ -10,12 +10,8 @@ from ku_lend.function.bill import send_bill
 
 
 def index(request):
-    item_list = Item.objects.all()
-    latest_item_list = []
-    for item in item_list:
-        if item.amount_items > 0:
-            context = {'latest_item_list': latest_item_list} #danger
-            latest_item_list.append(item)
+    latest_item_list = Item.objects.order_by('-item_name')
+    context = {'latest_item_list': latest_item_list} #danger
     send_reminder()
     send_bill()
     return render(request, 'ku_lend/index.html', context)
