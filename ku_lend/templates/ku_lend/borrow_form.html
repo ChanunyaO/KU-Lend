@@ -221,7 +221,7 @@ var item_number = document.getElementById("quantity").value;
 <script>
 function ConfirmLend() {
 var item_number = document.getElementById("quantity").value;
-document.getElementById("datefield").disabled = false;
+// document.getElementById("datefield").disabled = false;
 var item_date_field  = document.getElementById("datefield").value;
 var item_date_fields  = document.getElementById("datefields").value;
 const isEmpty = str => !str.trim().length;
@@ -284,7 +284,7 @@ if(mm<10){
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefields").setAttribute("min", pick_date);
 document.getElementById("datefields").setAttribute("max", today);
-document.getElementById("datefield").disabled = true;
+document.getElementById("datefield").readOnly = true;
 }
 </script>
 
