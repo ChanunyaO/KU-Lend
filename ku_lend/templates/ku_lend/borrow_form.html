@@ -221,6 +221,7 @@ var item_number = document.getElementById("quantity").value;
 <script>
 function ConfirmLend() {
 var item_number = document.getElementById("quantity").value;
+document.getElementById("datefield").disabled = false;
 var item_date_field  = document.getElementById("datefield").value;
 var item_date_fields  = document.getElementById("datefields").value;
 const isEmpty = str => !str.trim().length;
