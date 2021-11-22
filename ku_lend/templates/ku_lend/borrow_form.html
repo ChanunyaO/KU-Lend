@@ -173,7 +173,7 @@ img {vertical-align: middle;}
 
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-    <font color='#757575'>If you return rate you must pay {{ item.rate_fee }} bath per day</font>
+    <font color='#757575'>If you return late you must pay {{ item.rate_fee }} bath per day</font>
     <br>
     <font color='#757575'>The amount of {{ item.item_name }} that can be lend : {{ item.amount_items }}</font>
     <br>
