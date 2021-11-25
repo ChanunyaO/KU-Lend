@@ -170,6 +170,7 @@ img {vertical-align: middle;}
 </ul>
 <br>
 <br>
+
 <center>
   {% if user.socialaccount_set.all.0.get_avatar_url %}
   <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" style="width:20%">
@@ -177,6 +178,7 @@ img {vertical-align: middle;}
   <img src="https://static.vecteezy.com/system/resources/previews/002/318/271/non_2x/user-profile-icon-free-vector.jpg" style="width:20%">
   {% endif %}
 </center>
+
        {% load socialaccount %}
 {% if user.is_authenticated %}
     {% for i in profile%}
@@ -198,28 +200,30 @@ img {vertical-align: middle;}
     <th>Borrowed Date</th>
     <th>Return Date</th>
     <th>Fee</th>
-    <th>Status</th>
+    <th>Fee Paid Status</th>
+    <th>Return Status</th>
     <th>Note</th>
   </tr>
   {% for user in history %}
   <tr>
     <td>{{user.item.item_name}}</td>
-    <td>{{user.borrow_date}}</td>
-    <td>{{user.return_date}}</td>
+    <td>{{user.borrow_date.date}}</td>
+    <td>{{user.return_date.date}}</td>
     <td>{{user.borrower_fee}}</td>
     <td>{{user.borrower_paid_status}}</td>
+    <td>{{user.return_status}}</td>
     <td>{{user.item.note}}</td>
   </tr>
   {% endfor %}
 </table>
 {% endif%}
     </center>
-    <div class="footer">
+    
       <a href="https://github.com/ChanunyaO/KU-Lend">
     <img src="https://aws1.discourse-cdn.com/github/original/3X/4/6/4607bf071815b928202030de4b8de5b498581a2b.png"
          alt="HTML tutorial" style="width:60px;height:60px;" ALIGN = "RIGHT">
     </a>
-    </div>
     
+
 </body>
 </html>

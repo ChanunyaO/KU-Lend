@@ -14,7 +14,7 @@ class LoginTest(LiveServerTestCase):
         #self.driver.get(url)
 
     def test_login_link(self):
-        """Test if the staff button link to correct link."""
+        """Test if the login button link to correct link."""
         #url_list = []
         #self.url = self.driver.find_elements_by_tag_name("a")
         #for url in self.url:
@@ -23,7 +23,7 @@ class LoginTest(LiveServerTestCase):
         #self.assertIn("http://127.0.0.1.8000/accounts/google/login/", url_list)
 
     def test_logout_button_show_after_login(self):
-        """Test profile button show when user login."""
+        """Test logout button show when user login."""
         #self.driver.find_elements_by_tag_name("a")[1].click()
         #self.driver.find_element_by_id("id_username").send_keys("admin1")
         #self.driver.find_element_by_id("id_password").send_keys("123")

@@ -190,13 +190,17 @@ li a:hover {
 <div class="slideshow-container">
 {% if latest_item_list %}
         <ul>
+
     {% for item in latest_item_list %}
-            <div class="mySlides fade">
+            {% if item.amount_items > 0 %}
+                  <div class="mySlides fade">
                 <small><a href="{% url 'ku_lend:borrow_form' item.id %}">
               <img src="{{item.item_image.url}}" style="width:100%">
               </a></small>
                 <div class="text" >{{ item.item_name }}</div>
             </div>
+            {% endif %}
+
     {% endfor %}
         </ul>
     {% else %}
