@@ -12,15 +12,17 @@ def index(request):
         user = request.user
         user_email = user.email
         already_borrow = History.objects.filter(borrower_email=user_email,return_status=False)
+        already_borrow_name = []
         if(already_borrow is not None):
-           for history_data in already_borrow:
-                latest_item_list = Item.objects.exclude(item_name=history_data.item.item_name)
+            for history_data in already_borrow:
+                already_borrow_name.append(history_data.item.item_name)
+            latest_item_list = Item.objects.exclude(item_name__in=already_borrow_name)
         else:
-            latest_item_list = Item.objects.order_by('-item_name')[:5]
+            latest_item_list = Item.objects.order_by('-item_name')[:]
         context = {'latest_item_list': latest_item_list}
         return render(request, 'ku_lend/index.html', context)
     except:
-        latest_item_list = Item.objects.order_by('-item_name')[:5]
+        latest_item_list = Item.objects.order_by('-item_name')[:]
         context = {'latest_item_list': latest_item_list}
         return render(request, 'ku_lend/index.html', context)
 
