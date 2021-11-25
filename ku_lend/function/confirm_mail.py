@@ -15,6 +15,7 @@ def send_confirm(borrower, item, email, return_date, rate_fee):
 
 Respectfully Yours,
         Ku Lend admin""",
+
                 EMAIL_HOST_USER,
                 [email]
                 )
