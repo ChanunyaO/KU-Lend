@@ -198,7 +198,8 @@ img {vertical-align: middle;}
     <th>Borrowed Date</th>
     <th>Return Date</th>
     <th>Fee</th>
-    <th>Status</th>
+    <th>Fee Paid Status</th>
+    <th>Return Status</th>
     <th>Note</th>
   </tr>
   {% for user in history %}
@@ -208,6 +209,7 @@ img {vertical-align: middle;}
     <td>{{user.return_date.date}}</td>
     <td>{{user.borrower_fee}}</td>
     <td>{{user.borrower_paid_status}}</td>
+    <td>{{user.return_status}}</td>
     <td>{{user.item.note}}</td>
   </tr>
   {% endfor %}
@@ -220,6 +222,6 @@ img {vertical-align: middle;}
          alt="HTML tutorial" style="width:60px;height:60px;" ALIGN = "RIGHT">
     </a>
     </div>
-    
+
 </body>
 </html>
