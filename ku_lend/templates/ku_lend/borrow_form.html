@@ -173,24 +173,32 @@ img {vertical-align: middle;}
 
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-    <font color='#757575'>If you return rate you must pay {{ item.rate_fee }} bath per day</font>
+<font color='#757575'>If you return late you must pay {{ item.rate_fee }} bath per day</font>
     <br>
-    <font color='#757575'>The amount of {{ item.item_name }} that can be lend : {{ item.amount_items }}</font>
+    <font color='#757575'>The amount of {{ item.item_name }} that can be lend : {{ item.amount_items }} ({{ item.max_item_each_user }} item per user)</font>
+    <br>
+    <font color='#757575'>You can lend max {{ item.max_day_each_user }} days after pick up item date.</font>
     <br>
     <font color='#757575'><label>How many stuff you want to borrow : </lable></font>
-    <input type="number" id="quantity" name='borrow_amount' min = '1' max = {{item.max_item_each_user}}>
-    <button onclick="Number()">Confirm number</button>
+    <input type="number" id="quantity" name='borrow_amount' min = '1' max = {{item.max_item_each_user}} value="1">
+    <button id="number_button" onclick="Number()">Confirm number</button>
     <br>
     <div id= "confirm_number" style="display:none">
     <font color='#757575'><lable>Pick up Date: </lable></font>
     <input type='date' id="datefield" name='borrow_date' required='true'>
-    <button onclick="myFunction()">Confirm pick up date</button>
+    <button id="pickup_button" onclick="myFunction()">Confirm pick up date</button>
     <br>
     <div id= "send_date" style="display:none">
     <font color='#757575'><label>Return Date: </lable></font>
     <input type='date' id="datefields" name='return_date' required='true'>
     <br>
+    {% if user.is_authenticated %}
     <input onclick="ConfirmLend()" type="submit" class="btn btn-success" value="Confirm">
+    <a href="http://127.0.0.1:8000/"><font color='#808080'><button>Back Home</button></font></a>
+    {% else %}
+    <h4><small><font color='#808080'>Please login at before lend.</small></font></h4>
+     <a href="http://127.0.0.1:8000/"><font color='#808080'><button>Back Home</button></font></a>
+    {% endif %}
     </div>
     </div>
 </form>
@@ -206,6 +214,7 @@ img {vertical-align: middle;}
 function Number() {
 var item_number = document.getElementById("quantity").value;
   var get_confirm_number = document.getElementById("confirm_number");
+  var get_number_button = document.getElementById("number_button");
   if (item_number > {{item.max_item_each_user}}){
     document.getElementById("quantity").value = {{item.max_item_each_user}};
   }
@@ -214,6 +223,8 @@ var item_number = document.getElementById("quantity").value;
   }
   if (get_confirm_number.style.display === "none") {
     get_confirm_number.style.display = "block";
+    get_number_button.style.display = "none"
+    document.getElementById("quantity").readOnly = true;
   }
   }
 </script>
@@ -247,7 +258,7 @@ else{
 <script>
 var today = new Date();
 var dd = today.getDate();
-var mm = today.getMonth()+1; 
+var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 if(dd<10){
   dd='0'+dd
@@ -262,17 +273,21 @@ document.getElementById("datefield").setAttribute("min", today);
 <script>
 
 function myFunction() {
+var get_pickup_button = document.getElementById("pickup_button");
 var get_send_date = document.getElementById("send_date");
-  if (get_send_date.style.display === "none") {
+  if (get_send_date.style.display === "none" && document.getElementById("datefield").value) {
     get_send_date.style.display = "block";
+    get_pickup_button.style.display = "none";
+    document.getElementById("datefield").readOnly = true;
   }
 
-var days = {{item.max_day_each_user}}
+
+var days = {{ item.max_day_each_user }}
 var pick_date = document.getElementById("datefield").value
-console.log(pick_date)
 var today = new Date(pick_date);
-var dd = today.getDate()+days;
-var mm = today.getMonth()+1; 
+today.setDate(today.getDate() + days);
+var dd = today.getDate();
+var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 if(dd<10){
   dd='0'+dd
@@ -289,4 +304,3 @@ document.getElementById("datefields").setAttribute("max", today);
 
 </body>
 </html>
-

@@ -1,20 +1,30 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, response
 
 from ku_lend.function.confirm_mail import send_confirm
 from .models import History, Item
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from ku_lend.function.reminder import send_reminder
-from ku_lend.function.bill import send_bill
 
 
 def index(request):
-    latest_item_list = Item.objects.order_by('-item_name')[:5]
-    context = {'latest_item_list': latest_item_list} #danger
-    send_reminder()
-    send_bill()
-    return render(request, 'ku_lend/index.html', context)
+    try:
+        user = request.user
+        user_email = user.email
+        already_borrow = History.objects.filter(borrower_email=user_email,return_status=False)
+        already_borrow_name = []
+        if(already_borrow is not None):
+            for history_data in already_borrow:
+                already_borrow_name.append(history_data.item.item_name)
+            latest_item_list = Item.objects.exclude(item_name__in=already_borrow_name)
+        else:
+            latest_item_list = Item.objects.order_by('-item_name')[:]
+        context = {'latest_item_list': latest_item_list}
+        return render(request, 'ku_lend/index.html', context)
+    except:
+        latest_item_list = Item.objects.order_by('-item_name')[:]
+        context = {'latest_item_list': latest_item_list}
+        return render(request, 'ku_lend/index.html', context)
 
 
 def borrow_form(request, item_id):
@@ -40,8 +50,8 @@ def confirm(request, item_id):
 
     history.borrow_amount = request.POST["borrow_amount"]
     item.amount_items -= int(history.borrow_amount)
-    item.save()
 
+    item.save()
     history.save()
     send_confirm(history.borrower, history.item, history.borrower_email, history.return_date, item.rate_fee)
     return response.HttpResponseRedirect(reverse('ku_lend:index'))
