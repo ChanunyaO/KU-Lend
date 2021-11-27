@@ -183,12 +183,12 @@ img {vertical-align: middle;}
     <br>
     <div id= "confirm_number" style="display:none">
     <font color='#757575'><lable>Pick up Date: </lable></font>
-    <input type='date' id="datefield" name='borrow_date' required='true'>
+    <input type='date' id="datefield" name='borrow_date' required='true' onkeydown="return false">
     <button id="pickup_button" onclick="myFunction()">Confirm pick up date</button>
     <br>
     <div id= "send_date" style="display:none">
     <font color='#757575'><label>Return Date: </lable></font>
-    <input type='date' id="datefields" name='return_date' required='true'>
+    <input type='date' id="datefields" name='return_date' required='true' onkeydown="return false">
     <br>
     {% if user.is_authenticated %}
     <input onclick="ConfirmLend()" type="submit" class="btn btn-success" value="Confirm">
