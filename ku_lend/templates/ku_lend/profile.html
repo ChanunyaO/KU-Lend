@@ -190,38 +190,55 @@ img {vertical-align: middle;}
     {% endfor%}
     {% endif%}
 <font color='#c0c0c0'><h2>History</h2></font>
-       {% load socialaccount %}
+{% load socialaccount %}
 {% if user.is_authenticated %}
 <table>
   <tr>
     <th>Item</th>
+    <th>Borrowed Amount</th>
     <th>Borrowed Date</th>
     <th>Return Date</th>
     <th>Fee</th>
     <th>Fee Paid Status</th>
     <th>Return Status</th>
     <th>Note</th>
+    <th></th>
   </tr>
   {% for user in history %}
   <tr>
     <td>{{user.item.item_name}}</td>
+    <td>{{user.borrow_amount}}</td>
     <td>{{user.borrow_date.date}}</td>
     <td>{{user.return_date.date}}</td>
     <td>{{user.borrower_fee}}</td>
     <td>{{user.borrower_paid_status}}</td>
     <td>{{user.return_status}}</td>
     <td>{{user.item.note}}</td>
+    <td>
+      {% if user.return_status is False %}
+      {% if user.borrower_paid_status != "late" %}
+      <form action="{% url 'ku_lend:cancel' user.id user.item.item_name user.borrow_amount %}" method="post">
+      {% csrf_token %}
+      <input onclick="cancel_button()" type="submit" class="btn btn-success" value="cancel">
+    </form>
+    {% endif %}
+    {% endif %}
+  </td>
   </tr>
   {% endfor %}
 </table>
 {% endif%}
     </center>
-    
+
       <a href="https://github.com/ChanunyaO/KU-Lend">
     <img src="https://aws1.discourse-cdn.com/github/original/3X/4/6/4607bf071815b928202030de4b8de5b498581a2b.png"
          alt="HTML tutorial" style="width:60px;height:60px;" ALIGN = "RIGHT">
     </a>
-    
-
+<script>
+  function cancel_button() {
+    alert("Cancel Successful.");
+  }
+</script>
 </body>
+</script>
 </html>
