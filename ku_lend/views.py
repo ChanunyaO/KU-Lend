@@ -63,4 +63,4 @@ def cancel(request, id, item_name, amount):
     item.amount_items += int(amount)
     item.save()
     History.objects.filter(pk=id).delete()
-    return response.HttpResponseRedirect('http://127.0.0.1:8000/profile/')
+    return response.HttpResponseRedirect('https://kulend.herokuapp.com/profile/')
