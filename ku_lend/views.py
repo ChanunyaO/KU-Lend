@@ -56,3 +56,11 @@ def confirm(request, item_id):
     history.save()
     send_confirm(history.borrower, history.item, history.borrower_email, history.return_date, item.rate_fee)
     return response.HttpResponseRedirect(reverse('ku_lend:index'))
+
+@login_required(login_url='/accounts/login/')
+def cancel(request, id, item_name, amount):
+    item = get_object_or_404(Item, item_name=item_name)
+    item.amount_items += int(amount)
+    item.save()
+    History.objects.filter(pk=id).delete()
+    return response.HttpResponseRedirect('http://127.0.0.1:8000/profile/')

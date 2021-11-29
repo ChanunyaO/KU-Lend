@@ -20,6 +20,7 @@ https://kulend.herokuapp.com/
 - [Installation](https://github.com/ChanunyaO/KU-Lend/wiki/Installation)
 - [Code review script](https://github.com/ChanunyaO/KU-Lend/wiki/Code-Review-Script)
 - [Code review checklist](https://github.com/ChanunyaO/KU-Lend/wiki/Checklist)
+- [Presentation Slide](https://www.canva.com/design/DAEwV5Og3q4/zDggUF6x-aQ0qn3zyTNHxQ/view?utm_content=DAEwV5Og3q4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 
 ## Installation
 ### 1. Clone Project
