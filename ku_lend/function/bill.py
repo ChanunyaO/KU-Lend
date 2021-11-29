@@ -18,6 +18,7 @@ def send_bill():
             d1 = history.return_date
             delta = d0 - d1
             history.borrower_fee = history.item.rate_fee * delta.days
+            history.borrower_paid_status = "late"
             history.save()
             send_mail('Billing',
                       f"""Dear {history.borrower.title()},
