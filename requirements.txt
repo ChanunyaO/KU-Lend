@@ -1,5 +1,6 @@
 coverage
 Django~=3.2.7
+django-heroku
 django-environ
 python-decouple
 environ~=1.0
@@ -7,3 +8,11 @@ django-allauth
 Pillow
 django-celery
 selenium
+gunicorn
+dj-database-url
+psycopg2
+whitenoise
+cloudinary
+APScheduler==3.0.0
+
+
