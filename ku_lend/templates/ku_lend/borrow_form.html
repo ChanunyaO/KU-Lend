@@ -143,6 +143,12 @@ img {vertical-align: middle;}
 }
 </style>
 
+<style>
+  capitalize {
+    text-transform: uppercase;
+  }
+</style>
+
 </head>
 
 
@@ -168,18 +174,20 @@ img {vertical-align: middle;}
 <h1><center><font color='#c0c0c0'>{{ item.item_name }}</font></center></h1>
     <center><img src="https://consumer-img.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/tablets/matepad.jpg" style="width:50%"></center>
 <center>
-<font color='#757575'>Belong to {{ item.owner }}. Please pickup and return {{ item.pickup_place }}</font>
+<font color='#757575'>This item belongs to <capitalize>{{ item.owner }}</capitalize>. Please pickup and return at <capitalize>{{ item.pickup_place }}</capitalize>.</font>
 
 
 <form action="{% url 'ku_lend:confirm' item.id %}" method="post">
     {% csrf_token %}
-<font color='#757575'>If you return late you must pay {{ item.rate_fee }} bath per day</font>
+<font color='#757575'>You can borrow for up to {{ item.max_day_each_user }} days.</font>
     <br>
-    <font color='#757575'>The amount of {{ item.item_name }} that can be lend : {{ item.amount_items }} ({{ item.max_item_each_user }} item per user)</font>
+    <font color='#757575'>If you return late, the late fee is {{ item.rate_fee }} Baht per day.</font>
     <br>
-    <font color='#757575'>You can lend max {{ item.max_day_each_user }} days after pick up item date.</font>
+    <font color='#757575'>The number of Tablets available is: {{ item.amount_items }}</font>
     <br>
-    <font color='#757575'><label>How many stuff you want to borrow : </lable></font>
+    <font color='#757575'>The max number per borrower is: {{ item.max_item_each_user }}</font>
+    <br>
+    <font color='#757575'><label>How many do you want to borrow? </lable></font>
     <input type="number" id="quantity" name='borrow_amount' min = '1' max = {{item.max_item_each_user}} value="1">
     <button id="number_button" onclick="Number()">Confirm number</button>
     <br>
